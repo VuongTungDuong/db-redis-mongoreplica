@@ -1,0 +1,33 @@
+services:
+  StarRocks:
+    image: starrocks/allin1-ubuntu:latest
+    container_name: starrocks_db
+    ports:
+      - "9080:8080"
+      - "9030:9030"
+  MySQL:
+    container_name: mysql_db
+    image: debezium/example-mysql:2.7.3.Final
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root123
+      - MYSQL_USER=mysqluser
+      - MYSQL_PASSWORD=mysqlpw
+  Mongodb:
+    container_name: mongo_db
+    image: mongo:latest
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=root123
+    ports:
+      - "27017:27017"
+    command: [ "--replSet", "rs0", "--keyFile", "/etc/mongo-keyfile" ]
+    volumes:
+      - ./mongo-keyfile:/etc/mongo-keyfile:ro
+
+  Redis:
+    container_name: redis
+    image: redis:latest
+    ports:
+      - '6379:6379'
