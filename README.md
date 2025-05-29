@@ -1,5 +1,7 @@
 
-# Khi chạy mongo xong thì cần vào docker container chạy lệnh sau
+# Tạo các Database, Redis, Kafka cần thiết
+
+## Chuẩn bị các File cho mongo chạy replica
 
 - Tạo file mongo-keyfile và cập quyền
 
@@ -14,6 +16,8 @@ chmod 600 mongo-keyfile
 chown 999:999 mongo-keyfile
 
 ```
+
+## Vào container để khởi tạo replica
 
 - Lệnh vào docker container
 
